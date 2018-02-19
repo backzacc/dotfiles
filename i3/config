@@ -1,0 +1,173 @@
+set $mod Mod4
+font pango:Bitstream\ Vera\ Sans\ 8
+floating_modifier $mod
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+q kill
+bindsym $mod+odiaeresis focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+odiaeresis move right
+bindsym $mod+Shift+space floating toggle
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
+
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#RESIZE TILES
+bindsym $mod+Shift+Left resize shrink width 10 px or 10 ppt
+bindsym $mod+Shift+Down resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+Up resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+Right resize grow width 10 px or 10 ppt
+
+# Colors alias
+set $CL_BG #282C34
+set $CL_FG #ABB2BF
+set $CL_CUR #528BFF
+set $CL_BLACK #000000
+set $CL_RED #E06C75
+set $CL_GREEN #98C379
+set $CL_ORANGE #D19A66
+set $CL_BLUE #61AEEE
+set $CL_MAGENTA #C678DD
+set $CL_CYAN #56B6C2
+set $CL_LIGHTGRAY #ABB2BF
+set $CL_DARKGRAY #5C6370
+set $CL_WHITE #FFFFFF
+
+# Decotations colors
+
+# class                 border      backgr.     text    indicator   child_border
+client.focused          $CL_CUR     $CL_CUR     $CL_BG   $CL_CUR     $CL_CUR
+client.focused_inactive $CL_MAGENTA $CL_MAGENTA $CL_BG   $CL_MAGENTA $CL_MAGENTA
+client.unfocused        $CL_BG      $CL_BG      $CL_CUR  $CL_BG      $CL_BG
+client.urgent           $CL_RED     $CL_RED     $CL_BG   $CL_RED     $CL_RED
+client.placeholder      $CL_BG      $CL_BG      $CL_WHITE $CL_BLACK  $CL_BG
+
+# Bar setup
+bar {
+    tray_output none
+    mode invisible
+}
+exec_always --no-startup-id ~/.config/polybar/launch
+
+bindsym $mod+Shift+c exec caja
+
+#CUSTOM KEYBINDS
+bindsym $mod+a exec ~/scrota.sh
+#bindsym $mod+b
+bindsym $mod+c exec google-chrome
+bindsym $mod+d exec dmenu_run
+bindsym $mod+e layout toggle split
+bindsym $mod+f fullscreen toggle
+bindsym $mod+g exec waterfox
+bindsym $mod+h split h
+#bindsym $mod+i
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+#bindsym $mod+m
+#bindsym $mod+n
+#bindsym $mod+o 
+#bindsym $mod+p
+bindsym $mod+q exec ~/build-chatterino-Desktop-Debug/chatterino
+#bindsym $mod+r
+bindsym $mod+s exec scrot -u -q 100
+#bindsym $mod+t
+#bindsym $mod+u
+bindsym $mod+v split v
+bindsym $mod+w layout tabbed
+bindsym $mod+x exec i3lock -c 000000
+bindsym $mod+y exec caja
+#bindsym $mod+z
+bindsym $mod+space focus mode_toggle
+#SYSTEM START
+exec_always feh --bg-fill ~/weeb.png
+exec waterfox
+exec compton
+exec konsole
+exec setxkbmap -layout ch
+exec_always xmodmap ~/.xmodmap
+exec_always xmodmap -e "clear Lock"
+exec_always xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock"   
+exec_always xmodmap -e "keycode 66 = Escape NoSymbol Escape" 
+
+#ASSIGNE Workspaces
+assign [class="konsole"] $workspace1
+assign [class="discord"] $workspace5
+assign [class="Steam"] $workspace4
+assign [class="Waterfox"] $workspace2
+assign [class="mpv"] $workspace3
+#GAPS ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+gaps inner 10
+gaps outer 2
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 4
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+smart_gaps on
+focus_follows_mouse no
+new_window none
