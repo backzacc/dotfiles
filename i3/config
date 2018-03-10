@@ -82,14 +82,14 @@ bar {
     tray_output none
     mode invisible
 }
-exec_always --no-startup-id ~/.config/polybar/launch
+#exec_always --no-startup-id ~/.config/polybar/launch
 
 bindsym $mod+Shift+c exec caja
 
 #CUSTOM KEYBINDS
 bindsym $mod+a exec ~/scrota.sh
 #bindsym $mod+b
-bindsym $mod+c exec google-chrome
+bindsym $mod+c exec chromium
 bindsym $mod+d exec dmenu_run
 bindsym $mod+e layout toggle split
 bindsym $mod+f fullscreen toggle
@@ -126,10 +126,6 @@ exec_always xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock"
 exec_always xmodmap -e "keycode 66 = Escape NoSymbol Escape" 
 
 #ASSIGNE Workspaces
-assign [class="konsole"] $workspace1
-assign [class="discord"] $workspace5
-assign [class="Steam"] $workspace4
-assign [class="Waterfox"] $workspace2
 assign [class="mpv"] $workspace3
 #GAPS ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 gaps inner 10
