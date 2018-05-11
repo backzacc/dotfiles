@@ -1,5 +1,5 @@
 set $mod Mod4
-font pango:Bitstream\ Vera\ Sans\ 8
+font pango:Bitstream\ Vera\ Sans\ 7
 floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
@@ -82,18 +82,18 @@ bar {
     tray_output none
     mode invisible
 }
-#exec_always --no-startup-id ~/.config/polybar/launch
+exec_always --no-startup-id ~/.config/polybar/launch
 
 bindsym $mod+Shift+c exec caja
 
 #CUSTOM KEYBINDS
 bindsym $mod+a exec ~/scrota.sh
-#bindsym $mod+b
-bindsym $mod+c exec chromium
+bindsym $mod+b exec emacs
+bindsym $mod+c exec chromium https://twitch.tv/forsen
 bindsym $mod+d exec dmenu_run
 bindsym $mod+e layout toggle split
 bindsym $mod+f fullscreen toggle
-bindsym $mod+g exec waterfox
+bindsym $mod+g exec ~/waterfox/waterfox
 bindsym $mod+h split h
 #bindsym $mod+i
 bindsym $mod+j focus left
@@ -116,8 +116,6 @@ bindsym $mod+y exec caja
 bindsym $mod+space focus mode_toggle
 #SYSTEM START
 exec_always feh --bg-fill ~/weeb.png
-exec waterfox
-exec compton
 exec konsole
 exec setxkbmap -layout ch
 exec_always xmodmap ~/.xmodmap
